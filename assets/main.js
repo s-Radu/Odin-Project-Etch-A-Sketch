@@ -61,9 +61,11 @@ function handleColourCircleClick() {
   colour.click();
 }
 
-// function handleColourChange() {
-//   colourCircle.style.backgroundColor = selectedColor;
-// }
+function handleColourChange() {
+  selectedColor = this.value;
+  colourCircle.style.backgroundColor = selectedColor;
+  console.log(selectedColor);
+}
 
 function resetGameBoard() {
   //* reset the board
@@ -85,9 +87,4 @@ reset.addEventListener("click", resetGameBoard);
 
 colourCircle.addEventListener("click", handleColourCircleClick);
 // colour.addEventListener("change", handleColourChange);
-colour.addEventListener("change", function () {
-  // const selectedColor = colour.value;
-  selectedColor = this.value;
-  colourCircle.style.backgroundColor = selectedColor;
-  console.log(selectedColor);
-});
+colour.addEventListener("input", handleColourChange);

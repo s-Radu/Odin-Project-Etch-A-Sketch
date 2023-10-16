@@ -4,8 +4,8 @@
 .grid {
   display: grid;
   margin: 10px;
-  width: 500px;
-  height: 500px;
+  width: 37.5rem;
+  height: 37.5rem;
 }
 
 .border-1rem {
