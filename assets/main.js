@@ -2,6 +2,8 @@ const slider = document.getElementById("customRange1");
 const gameBoard = document.getElementById("grid");
 const reset = document.getElementById("reset");
 
+let isMouseDown = false;
+
 function updateGameBoard() {
   let squares = slider.value;
 
@@ -13,16 +15,37 @@ function updateGameBoard() {
     let square = document.createElement("div");
     square.classList.add("square");
     square.style.border = `1px solid black`;
+
+    //* event listeners for mouseover and mousedown
+    //> As the event listeners are added inside the for loop, each square that's added to the game board gets all these event listeners
+
+    square.addEventListener("mousedown", () => {
+      square.classList.add("hov-square");
+      isMouseDown = true;
+    });
+
+    square.addEventListener("mouseover", () => {
+      if (isMouseDown) {
+        square.classList.add("hov-square");
+      }
+    });
+
+    square.addEventListener("mouseup", () => {
+      isMouseDown = false;
+    });
+
     gameBoard.appendChild(square);
   }
 
-  const gridcells = gameBoard.querySelectorAll(".square");
+  //* Event listener only for mouseover
 
-  gridcells.forEach((cell) => {
-    cell.addEventListener("mouseover", () => {
-      cell.classList.add("hov-square");
-    });
-  });
+  // const gridcells = gameBoard.querySelectorAll(".square");
+
+  // gridcells.forEach((cell) => {
+  //   cell.addEventListener("mouseover", () => {
+  //     cell.classList.add("hov-square");
+  //   });
+  // });
 }
 
 slider.addEventListener("change", updateGameBoard);
