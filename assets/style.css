@@ -1,6 +1,5 @@
-.user-color {
-  width: 70%;
-  height: 3rem;
+.colour {
+  display: none;
 }
 .grid {
   display: grid;
@@ -10,7 +9,7 @@
 }
 
 .hov-square {
-  background-color: gray;
+  background-color: rgb(128, 128, 128);
 }
 
 .border-1rem {
@@ -18,9 +17,22 @@
 }
 .reset {
   background-color: rgb(128, 128, 128);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 .reset:active {
   background-color: rgba(128, 128, 128, 0.062);
-  color: black;
+  color: rgb(0, 0, 0);
+}
+
+.colour-circle {
+  display: block;
+  background-color: rgb(240, 248, 255);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50% !important;
+  cursor: pointer;
+}
+.colour-circle:hover {
+  scale: 1.05;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
 }

@@ -1,8 +1,16 @@
+//< Variables
+
 const slider = document.getElementById("customRange1");
 const gameBoard = document.getElementById("grid");
 const reset = document.getElementById("reset");
 
+const colour = document.getElementById("colour");
+const colourCircle = document.getElementById("colour-circle");
+
 let isMouseDown = false;
+const selectedColor = colour.value;
+
+//< Functions
 
 function updateGameBoard() {
   let squares = slider.value;
@@ -48,13 +56,35 @@ function updateGameBoard() {
   // });
 }
 
-slider.addEventListener("change", updateGameBoard);
+function handleColourCircleClick() {
+  colour.click();
+}
+
+// function handleColourChange() {
+//   colourCircle.style.backgroundColor = selectedColor;
+// }
 
 function resetGameBoard() {
   //* reset the board
 
   gameBoard.innerHTML = "";
   slider.value = 0;
+  isMouseDown = false;
 }
 
+//< Event listeners
+
+//* Prevent the default drag behaviour when the user plays with the game board
+
+gameBoard.addEventListener("selectstart", (e) => {
+  e.preventDefault();
+});
+slider.addEventListener("change", updateGameBoard);
 reset.addEventListener("click", resetGameBoard);
+
+colourCircle.addEventListener("click", handleColourCircleClick);
+// colour.addEventListener("change", handleColourChange);
+colour.addEventListener("change", function () {
+  // const selectedColor = colour.value;
+  colorCircle.style.backgroundColor = selectedColor;
+});
