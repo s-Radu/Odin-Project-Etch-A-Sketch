@@ -2,7 +2,7 @@ const slider = document.getElementById("customRange1");
 const gameBoard = document.getElementById("grid");
 const reset = document.getElementById("reset");
 
-slider.addEventListener("change", () => {
+function updateGameBoard() {
   let squares = slider.value;
 
   gameBoard.innerHTML = "";
@@ -16,14 +16,16 @@ slider.addEventListener("change", () => {
     gameBoard.appendChild(square);
   }
 
-  const gridCells = gameBoard.querySelectorAll(".square");
+  const gridcells = gameBoard.querySelectorAll(".square");
 
-  gridCells.forEach((cell) => {
+  gridcells.forEach((cell) => {
     cell.addEventListener("mouseover", () => {
       cell.classList.add("hov-square");
     });
   });
-});
+}
+
+slider.addEventListener("change", updateGameBoard);
 
 function resetGameBoard() {
   //* reset the board
