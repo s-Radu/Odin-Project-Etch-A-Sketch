@@ -1,3 +1,7 @@
+.user-color {
+  width: 70%;
+  height: 3rem;
+}
 .grid {
   display: grid;
   margin: 10px;
@@ -11,4 +15,12 @@
 
 .border-1rem {
   border-radius: 1rem;
+}
+.reset {
+  background-color: rgb(128, 128, 128);
+  color: white;
+}
+.reset:active {
+  background-color: rgba(128, 128, 128, 0.062);
+  color: black;
 }

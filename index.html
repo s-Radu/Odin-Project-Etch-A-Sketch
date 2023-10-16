@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"
         defer></script>
+    <link rel="shortcut icon" href="./assets/sketch.png" type="image/x-icon">
 
     <!--* Stylesheet and Js file -->
     <link rel="stylesheet" href="./assets/style.css">
@@ -18,10 +19,10 @@
     <title>Etch-A-Sketch</title>
 </head>
 
-<body>
-    <h1 class="font-monospace text-center m-4 text-decoration-underline">Etch-A-Sketch!</h1>
+<body class="bg-dark">
+    <h1 class="font-monospace text-center m-4 text-decoration-underline text-light">Etch-A-Sketch!</h1>
     <div class="container border border-dark">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-3">
                 <div class="wrapper text-center">
 
@@ -29,19 +30,18 @@
                     <input type="color" name="color" id="user-color" class="user-color">
 
                     <!--* The below allows user to select the size of the grid -->
-                    <label for="customRange1" class="form-label">How big is the Etch-A-Sketch gonna&nbspbe?</label>
+                    <label for="customRange1" class="form-label text-light p-3">How big is the Etch-A-Sketch
+                        gonna&nbspbe?</label>
                     <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
                         class="text-start" oninput="rangeValue.innerText = this.value">
-                    <input type="reset" value="reset" class="reset border-1rem border border-dark" id="reset">
+                    <input type="reset" value="reset" class="reset border-1rem border border-dark p-1" id="reset">
                     <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
-                    <p id="rangeValue" class="lead"></p>
+                    <p id="rangeValue" class="lead text-light me-5"></p>
                 </div>
             </div>
             <div class="col-1"></div>
             <div class="col-7">
-                <div class="grid border border-dark p-1 border-1rem" id="grid">
-
-                </div>
+                <div class="grid border border-dark p-1 border-1rem" id="grid"></div>
             </div>
         </div>
     </div>

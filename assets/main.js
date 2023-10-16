@@ -1,7 +1,6 @@
 const slider = document.getElementById("customRange1");
 const gameBoard = document.getElementById("grid");
 const reset = document.getElementById("reset");
-const gridCells = document.querySelectorAll(".square");
 
 slider.addEventListener("change", () => {
   let squares = slider.value;
@@ -12,24 +11,25 @@ slider.addEventListener("change", () => {
 
   for (let i = 0; i < squares * squares; i++) {
     let square = document.createElement("div");
-    square.classList.add(".square");
+    square.classList.add("square");
     square.style.border = `1px solid black`;
-    square.style.zIndex = `9`;
     gameBoard.appendChild(square);
   }
-});
 
-gridCells.forEach((cell) => {
-  cell.addEventListener("mouseover", () => {
-    cell.classList.add("hov-square");
+  const gridCells = gameBoard.querySelectorAll(".square");
+
+  gridCells.forEach((cell) => {
+    cell.addEventListener("mouseover", () => {
+      cell.classList.add("hov-square");
+    });
   });
 });
-
-reset.addEventListener("click", resetGameBoard);
 
 function resetGameBoard() {
-  gridCells.forEach((cell) => {
-    cell.classList.remove("hov-square");
-    gameBoard.removeChild(cell);
-  });
+  //* reset the board
+
+  gameBoard.innerHTML = "";
+  slider.value = 0;
 }
+
+reset.addEventListener("click", resetGameBoard);
