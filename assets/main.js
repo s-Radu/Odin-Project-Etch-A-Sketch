@@ -1,43 +1,35 @@
 const slider = document.getElementById("customRange1");
-const sliderValueDisplay = document.getElementById("rangeValue");
 const gameBoard = document.getElementById("grid");
-const gridSquares = document.querySelectorAll(".grid div");
+const reset = document.getElementById("reset");
+const gridCells = document.querySelectorAll(".square");
 
-let timeout;
-let divs = [];
-let currentValue = null;
+slider.addEventListener("change", () => {
+  let squares = slider.value;
 
-slider.addEventListener("input", () => {
-  // Clear any previous timeout to debounce the event
-  clearTimeout(timeout);
+  gameBoard.innerHTML = "";
+  gameBoard.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
+  gameBoard.style.gridTemplateColumns = `repeat(${squares}, 1fr)`;
 
-  // Set a timeout to wait for the user to stop sliding
-  timeout = setTimeout(() => {
-    if (slider.value !== currentValue) {
-      currentValue = slider.value;
-      clearGrid();
-      createDivGrid(currentValue, currentValue); // Pass slider value for rows and columns
-    }
-  }, 500);
+  for (let i = 0; i < squares * squares; i++) {
+    let square = document.createElement("div");
+    square.classList.add(".square");
+    square.style.border = `1px solid black`;
+    square.style.zIndex = `9`;
+    gameBoard.appendChild(square);
+  }
 });
 
-function clearGrid() {
-  const value = slider.value;
-  sliderValueDisplay.textContent = value;
-  // Clear existing divs in the grid
-  while (grid.firstChild) {
-    grid.removeChild(grid.firstChild);
-  }
-  divs = [];
-}
+gridCells.forEach((cell) => {
+  cell.addEventListener("mouseover", () => {
+    cell.classList.add("hov-square");
+  });
+});
 
-function createDivGrid(numRows, numCols) {
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < numCols; j++) {
-      const div = document.createElement("div");
-      //   div.classList.add("grid-item"); // You can apply your own CSS styles
-      gameBoard.appendChild(div);
-      divs.push(div);
-    }
-  }
+reset.addEventListener("click", resetGameBoard);
+
+function resetGameBoard() {
+  gridCells.forEach((cell) => {
+    cell.classList.remove("hov-square");
+    gameBoard.removeChild(cell);
+  });
 }

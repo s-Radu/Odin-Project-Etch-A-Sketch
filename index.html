@@ -24,14 +24,22 @@
         <div class="row">
             <div class="col-3">
                 <div class="wrapper text-center">
+
+                    <!--* The below allows user to select a color -->
+                    <input type="color" name="color" id="user-color" class="user-color">
+
+                    <!--* The below allows user to select the size of the grid -->
                     <label for="customRange1" class="form-label">How big is the Etch-A-Sketch gonna&nbspbe?</label>
-                    <input type="range" name="customRange1" id="customRange1" min="1" max="100" value="0">
+                    <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
+                        class="text-start" oninput="rangeValue.innerText = this.value">
+                    <input type="reset" value="reset" class="reset border-1rem border border-dark" id="reset">
+                    <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
                     <p id="rangeValue" class="lead"></p>
                 </div>
             </div>
             <div class="col-1"></div>
             <div class="col-7">
-                <div class="grid" id="grid">
+                <div class="grid border border-dark p-1 border-1rem" id="grid">
 
                 </div>
             </div>
