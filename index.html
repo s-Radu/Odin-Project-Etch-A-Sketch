@@ -26,17 +26,18 @@
             <div class="col-3 ms-5">
 
                 <!--* The below allows user to select a color -->
-                <span class="colour-circle m-3 ms-5" id="colour-circle"></span>
-                <input type="color" name="color" id="colour" class="colour" value="#808080">
+                <span class="colour-circle m-3 ms-5 position-relative" id="colour-circle">
+                    <input type="color" name="color" id="colour" class="colour" ">
+                </span>
 
                 <!--* The below allows user to select the size of the grid -->
-                <label for="customRange1" class="form-label text-light my-2">How big is the Etch-A-Sketch
+                <label for=" customRange1" class="form-label text-light my-2">How big is the Etch-A-Sketch
                     gonna&nbspbe?</label>
-                <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0" class="text-start"
-                    oninput="rangeValue.innerText = this.value">
-                <input type="reset" value="reset" class="reset border-1rem border border-dark p-1" id="reset">
-                <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
-                <p id="rangeValue" class="lead text-light me-5"></p>
+                    <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
+                        class="text-start" oninput="rangeValue.innerText = this.value">
+                    <input type="reset" value="reset" class="reset border-1rem border border-dark p-1" id="reset">
+                    <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
+                    <p id="rangeValue" class="lead text-light me-5"></p>
             </div>
             <div class="col-1"></div>
             <div class="col-7">

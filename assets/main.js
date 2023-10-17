@@ -70,8 +70,11 @@ function handleColourChange() {
 function resetGameBoard() {
   //* reset the board
 
-  gameBoard.innerHTML = "";
-  slider.value = 0;
+  const gridCells = gameBoard.querySelectorAll(".square");
+  gridCells.forEach((cell) => {
+    cell.style.backgroundColor = "white";
+  });
+
   isMouseDown = false;
 }
 

@@ -1,5 +1,11 @@
 .colour {
-  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
 .grid {
   display: grid;
@@ -27,6 +33,7 @@
   height: 5rem;
   border-radius: 50% !important;
   cursor: pointer;
+  z-index: 9 !important;
 }
 .colour-circle:hover {
   scale: 1.05;
