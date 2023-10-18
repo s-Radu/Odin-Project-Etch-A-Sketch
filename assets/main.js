@@ -39,6 +39,7 @@ function updateGameBoard() {
   });
 
   gameBoard.addEventListener("mouseover", handleSquareInteraction);
+  gameBoard.addEventListener("mousedown", handleSquareInteraction);
 }
 
 function createSquare() {
