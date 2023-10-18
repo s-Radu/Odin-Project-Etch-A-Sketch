@@ -25,19 +25,29 @@
         <div class="row mt-5">
             <div class="col-3 ms-5">
 
-                <!--* The below allows user to select a color -->
-                <span class="colour-circle m-3 ms-5 position-relative" id="colour-circle">
-                    <input type="color" name="color" id="colour" class="colour" ">
-                </span>
+                <div class="d-grid gap-2 col-6 mx-auto">
 
+                    <!--* The below allows user to select a color -->
+                    <span class="colour-circle m-3  position-relative" id="colour-circle">
+                        <input type="color" name="color" id="colour" class="colour" ">
+                    </span>
+                    
                 <!--* The below allows user to select the size of the grid -->
-                <label for=" customRange1" class="form-label text-light my-2">How big is the Etch-A-Sketch
-                    gonna&nbspbe?</label>
-                    <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
-                        class="text-start" oninput="rangeValue.innerText = this.value">
-                    <input type="reset" value="reset" class="reset border-1rem border border-dark p-1" id="reset">
-                    <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
-                    <p id="rangeValue" class="lead text-light me-5"></p>
+                <label for=" customRange1" class="form-label text-light my-2">Sketch size?</label>
+                        <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
+                            class="text-start" oninput="rangeValue.innerText = this.value + ' X ' + this.value">
+
+                        <!-- > Easier way to display the value inside the paragraph with id of rangeValue -->
+                        <p id="rangeValue" class="lead text-light ms-4 my-2"></p>
+                </div>
+
+                <!--> Further buttons -->
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button id="colorMode" class="btn btn-primary m-2">Color</button>
+                    <button id="colorMode" class="d-block btn btn-primary m-2">Rainbow </button>
+                    <button id="rainBowMode" class="d-block btn btn-primary m-2 ">Eraser</button>
+                    <button id="reset" class="reset btn btn-primary m-2">Clear</button>
+                </div>
             </div>
             <div class="col-1"></div>
             <div class="col-7">

@@ -17,13 +17,11 @@
 .border-1rem {
   border-radius: 1rem;
 }
-.reset {
-  background-color: rgb(128, 128, 128);
-  color: rgb(255, 255, 255);
-}
-.reset:active {
-  background-color: rgba(128, 128, 128, 0.062);
-  color: rgb(0, 0, 0);
+
+.btn.active {
+  background-color: brown;
+  border: 1px solid brown;
+  color: white;
 }
 
 .colour-circle {
