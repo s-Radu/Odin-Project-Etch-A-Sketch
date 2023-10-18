@@ -8,8 +8,12 @@ const colour = document.getElementById("colour");
 const colourCircle = document.getElementById("colour-circle");
 
 const buttonModes = document.querySelectorAll(
-  "#colourMode, #rainbowMode, #eraser"
+  "#colourMode, #rainbowMode, #shadowMode, #eraser"
 );
+const colourModeBtn = buttonModes[0];
+const rainbowModeBtn = buttonModes[1];
+const shadowModeBtn = buttonModes[2];
+const eraserBtn = buttonModes[3];
 
 let isMouseDown = false;
 let selectedColor = colour.value;
@@ -32,7 +36,16 @@ function updateGameBoard() {
 
     square.addEventListener("mousedown", () => {
       square.classList.add("hov-square");
-      square.style.backgroundColor = selectedColor;
+
+      if (colourModeBtn.classList.contains("active")) {
+        square.style.backgroundColor = selectedColor;
+      } else if (rainbowModeBtn.classList.contains("active")) {
+        //* to be added
+      } else if (shadowModeBtn.classList.contains("active")) {
+        //* to be added
+      } else if (eraserBtn.classList.contains("active")) {
+        selectedColor = "white";
+      }
       isMouseDown = true;
     });
 
@@ -78,6 +91,7 @@ buttonModes.forEach((btn) => {
       otherButton.classList.remove("active")
     );
     btn.classList.add("active");
+    console.log(btn.id);
   });
 });
 
