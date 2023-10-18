@@ -22,6 +22,7 @@ let selectedColor = colour.value;
 
 function updateGameBoard() {
   let squares = slider.value;
+  let darknessLevel = 0;
 
   gameBoard.innerHTML = "";
   gameBoard.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
@@ -42,17 +43,48 @@ function updateGameBoard() {
       } else if (rainbowModeBtn.classList.contains("active")) {
         //* to be added
       } else if (shadowModeBtn.classList.contains("active")) {
-        //* to be added
+        if (!square.hasAttribute("data-opacity")) {
+          // New square clicked, initialize opacity
+          square.setAttribute("data-opacity", 0.1);
+          square.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
+        } else {
+          // Existing square clicked, accumulate opacity
+          let currentOpacity = parseFloat(square.getAttribute("data-opacity"));
+          currentOpacity += 0.1;
+          square.setAttribute("data-opacity", currentOpacity);
+          square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+        }
       } else if (eraserBtn.classList.contains("active")) {
         selectedColor = "white";
       }
+
       isMouseDown = true;
     });
 
     square.addEventListener("mouseover", () => {
       if (isMouseDown) {
         square.classList.add("hov-square");
-        square.style.backgroundColor = selectedColor;
+        if (colourModeBtn.classList.contains("active")) {
+          square.style.backgroundColor = selectedColor;
+        } else if (rainbowModeBtn.classList.contains("active")) {
+          //* to be added
+        } else if (shadowModeBtn.classList.contains("active")) {
+          if (!square.hasAttribute("data-opacity")) {
+            // New square clicked, initialize opacity
+            square.setAttribute("data-opacity", 0.1);
+            square.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
+          } else {
+            // Existing square clicked, accumulate opacity
+            let currentOpacity = parseFloat(
+              square.getAttribute("data-opacity")
+            );
+            currentOpacity += 0.1;
+            square.setAttribute("data-opacity", currentOpacity);
+            square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+          }
+        } else if (eraserBtn.classList.contains("active")) {
+          selectedColor = "white";
+        }
       }
     });
 
