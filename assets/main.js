@@ -7,6 +7,10 @@ const reset = document.getElementById("reset");
 const colour = document.getElementById("colour");
 const colourCircle = document.getElementById("colour-circle");
 
+const buttonModes = document.querySelectorAll(
+  "#colourMode, #rainbowMode, #eraser"
+);
+
 let isMouseDown = false;
 let selectedColor = colour.value;
 
@@ -45,16 +49,6 @@ function updateGameBoard() {
 
     gameBoard.appendChild(square);
   }
-
-  //* Event listener only for mouseover
-
-  // const gridcells = gameBoard.querySelectorAll(".square");
-
-  // gridcells.forEach((cell) => {
-  //   cell.addEventListener("mouseover", () => {
-  //     cell.classList.add("hov-square");
-  //   });
-  // });
 }
 
 function handleColourCircleClick() {
@@ -78,6 +72,15 @@ function resetGameBoard() {
   isMouseDown = false;
 }
 
+buttonModes.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    buttonModes.forEach((otherButton) =>
+      otherButton.classList.remove("active")
+    );
+    btn.classList.add("active");
+  });
+});
+
 //< Event listeners
 
 //* Prevent the default drag behaviour when the user plays with the game board
@@ -89,5 +92,4 @@ slider.addEventListener("change", updateGameBoard);
 reset.addEventListener("click", resetGameBoard);
 
 colourCircle.addEventListener("click", handleColourCircleClick);
-// colour.addEventListener("change", handleColourChange);
 colour.addEventListener("input", handleColourChange);
