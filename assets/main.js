@@ -15,84 +15,65 @@ const rainbowModeBtn = buttonModes[1];
 const shadowModeBtn = buttonModes[2];
 const eraserBtn = buttonModes[3];
 
-let isMouseDown = false;
-let selectedColor = colour.value;
+let isClicked = false; // Add this variable to track mouse click
 
 //< Functions
 
 function updateGameBoard() {
-  let squares = slider.value;
-  let darknessLevel = 0;
-
+  const squares = slider.value;
   gameBoard.innerHTML = "";
   gameBoard.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
   gameBoard.style.gridTemplateColumns = `repeat(${squares}, 1fr)`;
 
   for (let i = 0; i < squares * squares; i++) {
-    let square = document.createElement("div");
-    square.classList.add("square");
+    const square = createSquare();
+    gameBoard.appendChild(square);
+  }
 
-    //* event listeners for mouseover and mousedown
-    //> As the event listeners are added inside the for loop, each square that's added to the game board gets all these event listeners
+  gameBoard.addEventListener("mousedown", () => {
+    isClicked = true; // Set the click state to true
+  });
 
-    square.addEventListener("mousedown", () => {
-      square.classList.add("hov-square");
+  gameBoard.addEventListener("mouseup", () => {
+    isClicked = false; // Set the click state to false when the mouse button is released
+  });
 
+  gameBoard.addEventListener("mouseover", handleSquareInteraction);
+}
+
+function createSquare() {
+  const square = document.createElement("div");
+  square.classList.add("square");
+  return square;
+}
+
+function handleSquareInteraction(event) {
+  if (event.target.classList.contains("square")) {
+    const square = event.target;
+
+    if (isClicked) {
       if (colourModeBtn.classList.contains("active")) {
         square.style.backgroundColor = selectedColor;
       } else if (rainbowModeBtn.classList.contains("active")) {
-        //* to be added
+        // Handle rainbow mode
       } else if (shadowModeBtn.classList.contains("active")) {
-        if (!square.hasAttribute("data-opacity")) {
-          // New square clicked, initialize opacity
-          square.setAttribute("data-opacity", 0.1);
-          square.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
-        } else {
-          // Existing square clicked, accumulate opacity
-          let currentOpacity = parseFloat(square.getAttribute("data-opacity"));
-          currentOpacity += 0.1;
-          square.setAttribute("data-opacity", currentOpacity);
-          square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
-        }
+        handleShadowMode(square);
       } else if (eraserBtn.classList.contains("active")) {
-        selectedColor = "white";
+        square.style.backgroundColor = "white";
       }
+    }
+  }
+}
 
-      isMouseDown = true;
-    });
-
-    square.addEventListener("mouseover", () => {
-      if (isMouseDown) {
-        square.classList.add("hov-square");
-        if (colourModeBtn.classList.contains("active")) {
-          square.style.backgroundColor = selectedColor;
-        } else if (rainbowModeBtn.classList.contains("active")) {
-          //* to be added
-        } else if (shadowModeBtn.classList.contains("active")) {
-          if (!square.hasAttribute("data-opacity")) {
-            // New square clicked, initialize opacity
-            square.setAttribute("data-opacity", 0.1);
-            square.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
-          } else {
-            // Existing square clicked, accumulate opacity
-            let currentOpacity = parseFloat(
-              square.getAttribute("data-opacity")
-            );
-            currentOpacity += 0.1;
-            square.setAttribute("data-opacity", currentOpacity);
-            square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
-          }
-        } else if (eraserBtn.classList.contains("active")) {
-          selectedColor = "white";
-        }
-      }
-    });
-
-    square.addEventListener("mouseup", () => {
-      isMouseDown = false;
-    });
-
-    gameBoard.appendChild(square);
+function handleShadowMode(square) {
+  if (!square.hasAttribute("data-opacity")) {
+    square.setAttribute("data-opacity", 0.1);
+    square.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
+  } else {
+    let currentOpacity = parseFloat(square.getAttribute("data-opacity"));
+    currentOpacity += 0.1;
+    square.setAttribute("data-opacity", currentOpacity);
+    square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
   }
 }
 
