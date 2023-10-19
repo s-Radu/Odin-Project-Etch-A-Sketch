@@ -29,13 +29,14 @@ body {
 }
 
 .colour-circle {
+  position: relative;
+  left: 10%;
   display: block;
   background-color: rgb(240, 248, 255);
   width: 5rem;
   height: 5rem;
   border-radius: 50% !important;
   cursor: pointer;
-  z-index: 9 !important;
 }
 .colour-circle:hover {
   scale: 1.05;

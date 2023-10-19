@@ -30,15 +30,15 @@
         <div class="row mt-3 mx-auto">
             <div class="col-3 ms-5">
 
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-6 mx-auto position-relative">
 
                     <!--* The below allows user to select a color -->
-                    <span class="colour-circle m-3  position-relative" id="colour-circle">
+                    <span class="colour-circle m-3 " id="colour-circle">
                         <input type="color" name="color" id="colour" class="colour" ">
                     </span>
                     
                 <!--* The below allows user to select the size of the grid -->
-                <label for=" customRange1" class="form-label text-light my-2">Sketch size?</label>
+                <label for=" customRange1" class="form-label text-light my-2 text-center">Sketch size?</label>
                         <input type="range" name="customRange1" id="customRange1" min="1" max="64" value="0"
                             class="text-start" oninput="rangeValue.innerText = this.value + ' X ' + this.value">
 
