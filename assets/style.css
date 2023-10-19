@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .colour {
   position: absolute;
   right: 0;
@@ -36,4 +40,23 @@
 .colour-circle:hover {
   scale: 1.05;
   box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+.bi-github {
+  font-size: 2rem;
+}
+.bi-github:hover {
+  animation: puff-in 1s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+@keyframes puff-in {
+  0% {
+    transform: scale(2);
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
