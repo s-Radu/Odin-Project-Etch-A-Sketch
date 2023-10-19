@@ -41,6 +41,12 @@ body {
   scale: 1.05;
   box-shadow: 0 0 10px rgb(255, 255, 255);
 }
+.card-footer {
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  translate: -50%;
+}
 .bi-github {
   font-size: 2rem;
 }
