@@ -15,12 +15,16 @@ const rainbowModeBtn = buttonModes[1];
 const shadowModeBtn = buttonModes[2];
 const eraserBtn = buttonModes[3];
 
-let isClicked = false; // Add this variable to track mouse click
+let isClicked = false;
+
+//* Generate random color to be used with rainbowModeBtn
+const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
 //< Functions
 
 function updateGameBoard() {
   const squares = slider.value;
+
   gameBoard.innerHTML = "";
   gameBoard.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
   gameBoard.style.gridTemplateColumns = `repeat(${squares}, 1fr)`;
@@ -31,11 +35,11 @@ function updateGameBoard() {
   }
 
   gameBoard.addEventListener("mousedown", () => {
-    isClicked = true; // Set the click state to true
+    isClicked = true;
   });
 
   gameBoard.addEventListener("mouseup", () => {
-    isClicked = false; // Set the click state to false when the mouse button is released
+    isClicked = false;
   });
 
   gameBoard.addEventListener("mouseover", handleSquareInteraction);
@@ -56,7 +60,7 @@ function handleSquareInteraction(event) {
       if (colourModeBtn.classList.contains("active")) {
         square.style.backgroundColor = selectedColor;
       } else if (rainbowModeBtn.classList.contains("active")) {
-        // Handle rainbow mode
+        square.style.backgroundColor = randomDotColour();
       } else if (shadowModeBtn.classList.contains("active")) {
         handleShadowMode(square);
       } else if (eraserBtn.classList.contains("active")) {
@@ -78,6 +82,15 @@ function handleShadowMode(square) {
   }
 }
 
+function randomDotColour() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function handleColourCircleClick() {
   colour.click();
 }
@@ -85,7 +98,6 @@ function handleColourCircleClick() {
 function handleColourChange() {
   selectedColor = this.value;
   colourCircle.style.backgroundColor = selectedColor;
-  console.log(selectedColor);
 }
 
 function resetGameBoard() {
@@ -105,7 +117,6 @@ buttonModes.forEach((btn) => {
       otherButton.classList.remove("active")
     );
     btn.classList.add("active");
-    console.log(btn.id);
   });
 });
 
