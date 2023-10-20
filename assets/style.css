@@ -43,7 +43,7 @@ body {
   box-shadow: 0 0 10px rgb(255, 255, 255);
 }
 .card-footer {
-  position: absolute;
+  position: relative;
   left: 50%;
   bottom: 1%;
   translate: -50%;
